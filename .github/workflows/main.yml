@@ -23,18 +23,17 @@ jobs:
         echo "Check GITHUB_SHA_SHORT=${GITHUB_SHA_SHORT}" 
         echo "GITHUB_SHA_SHORT=${GITHUB_SHA_SHORT}" >> $GITHUB_ENV
          
-        # docker build -t $IMAGE_NAME:${GITHUB_SHA_SHORT} .
-        docker build -t raghutest:1.0 .
-
-        echo "List of all env variables..."
-        env
+        docker build -t $IMAGE_NAME:${GITHUB_SHA_SHORT} .
+        echo "Images list..."
+        docker image ls
+        # docker build -t raghutest:1.0 .
 
     - name: Run Orca Container Image Scan
       uses: orcasecurity/shiftleft-container-image-action@v1
       with:
         api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
         project_key: slrk
-        image: raghutest:1.0
+        image: $IMAGE_NAME:${GITHUB_SHA_SHORT}
         debug: true
         output:
           "results/"
