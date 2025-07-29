@@ -27,13 +27,6 @@ jobs:
         echo "Images list..."
         docker image ls
 
-    - name: Set environment
-      run: |
-        cat <<EOF> "$GITHUB_ENV"
-        ORCA_SECURITY_CONTAINER_DAEMON_HOST="unix:///var/run/docker.sock"
-        ORCA_SECURITY_CONTAINER_DAEMON_HOST="tcp://0.0.0.0:2376"
-        EOF
-
     - name: Run Orca Container Image Scan
       uses: orcasecurity/shiftleft-container-image-action@v1
       with:
