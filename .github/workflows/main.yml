@@ -26,7 +26,13 @@ jobs:
         docker build -t $IMAGE_NAME:${GITHUB_SHA_SHORT} .
         echo "Images list..."
         docker image ls
-        # docker build -t raghutest:1.0 .
+
+    - name: Set environment
+      run: |
+        cat <<EOF> "$GITHUB_ENV"
+        ORCA_SECURITY_CONTAINER_DAEMON_HOST="unix:///var/run/docker.sock"
+        ORCA_SECURITY_CONTAINER_DAEMON_HOST="tcp://0.0.0.0:2376"
+        EOF
 
     - name: Run Orca Container Image Scan
       uses: orcasecurity/shiftleft-container-image-action@v1
