@@ -30,7 +30,7 @@ jobs:
       with:
         api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
         project_key: slrk
-        image: ${{IMAGE_NAME}}:${{GITHUB_SHA_SHORT}}
+        image: ${IMAGE_NAME}:${GITHUB_SHA_SHORT}
         debug: true
         output:
           "results/"
