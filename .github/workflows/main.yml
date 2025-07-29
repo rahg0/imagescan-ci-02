@@ -34,8 +34,6 @@ jobs:
         project_key: slrk
         image: demo-image:${{ env.GITHUB_SHA_SHORT }}
         debug: true
-        output:
-          "results/"
 
     - name: Orca CLI - Security Scanning
       env:
