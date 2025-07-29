@@ -23,7 +23,7 @@ jobs:
         echo "Check GITHUB_SHA_SHORT=${GITHUB_SHA_SHORT}" 
         echo "GITHUB_SHA_SHORT=${GITHUB_SHA_SHORT}" >> $GITHUB_ENV
          
-        docker build -t $IMAGE_NAME:${GITHUB_SHA_SHORT} .
+        docker build -t $IMAGE_NAME:1.0 .
         echo "Images list..."
         docker image ls
         # docker build -t raghutest:1.0 .
@@ -33,7 +33,7 @@ jobs:
       with:
         api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
         project_key: slrk
-        image: $IMAGE_NAME:${GITHUB_SHA_SHORT}
+        image: $IMAGE_NAME:1.0
         debug: true
         output:
           "results/"
