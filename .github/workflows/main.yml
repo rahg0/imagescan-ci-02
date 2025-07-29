@@ -25,6 +25,9 @@ jobs:
          
         docker build -t $IMAGE_NAME:${GITHUB_SHA_SHORT} .
 
+        echo "List of all env variables..."
+        env
+
     - name: Run Orca Container Image Scan
       uses: orcasecurity/shiftleft-container-image-action@v1
       with:
